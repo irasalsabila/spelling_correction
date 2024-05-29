@@ -109,7 +109,6 @@ def correct_spelling(paragraph, language=None):
             return correct_text_with_language(paragraph, normalized_language)
         
         dictionary_file = CUSTOM_LANGUAGE_DICTIONARY_MAP.get(normalized_language)
-        print(dictionary_file)
         if dictionary_file:
             return correct_text_with_dictionary(paragraph, dictionary_file)
         else:

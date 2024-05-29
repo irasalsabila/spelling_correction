@@ -32,15 +32,16 @@ def predict():
     language = request_data.get('lang')
 
     # Log the received request details
-    log.info('Receive request for Unscramble Words for "' + text + '" with process date ' + now )
+    log.info('Receive request for Spelled Correction for "' + text + '" and using "' + language \
+              +'" with process date ' + now )
 
     try:
 
         spell_corrected = sf.correct_spelling(text, language)
         
-        # Check if locations are detected
+        # Check if spelled corrected are detected
         if spell_corrected:
-            # Return success response with detected locations
+            # Return success response with spelled correction
             return app.response_class(
                 response=json.dumps({
                     # "response": "OK",
@@ -52,7 +53,7 @@ def predict():
                 mimetype = 'application/json'
             )
         else:
-            # Return success response with message if no locations are detected
+            # Return success response with message if no sentence available
             return app.response_class(
                 response = json.dumps({"response":"OK", "message":"Words not detected in the text"}),
                 status = 201,
